@@ -11,10 +11,14 @@ public class PathMover : MonoBehaviour
     Queue<Vector3> pathPoints = new Queue<Vector3>();
 
     public PathCreator PC;
+    bool isMoving;
+
+    Animator anim;
 
     void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
         PC.OnNewPathCreated += SetPoints;
     }
 
@@ -31,7 +35,11 @@ public class PathMover : MonoBehaviour
     void UpdatePathing()
     {
         if (ShouldSetDestination())
+        {
             navMeshAgent.SetDestination(pathPoints.Dequeue());
+            anim.SetTrigger("isRun");
+        }
+       
     }
 
     bool ShouldSetDestination()
