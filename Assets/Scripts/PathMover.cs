@@ -7,13 +7,11 @@ using UnityEngine.AI;
 public class PathMover : MonoBehaviour
 {
     NavMeshAgent navMeshAgent;
+    Animator anim;
 
     Queue<Vector3> pathPoints = new Queue<Vector3>();
 
     public PathCreator PC;
-    bool isMoving;
-
-    Animator anim;
 
     void Awake()
     {
