@@ -35,6 +35,7 @@ public class PathCreator : MonoBehaviour
 
                     lineRenderer.positionCount = points.Count;
                     lineRenderer.SetPositions(points.ToArray());
+
                 }
             }
         }
@@ -48,6 +49,9 @@ public class PathCreator : MonoBehaviour
             if (!points.Any())
                 return Mathf.Infinity;
             return Vector3.Distance(points.Last(), point);
+
+
+
 
 
         }

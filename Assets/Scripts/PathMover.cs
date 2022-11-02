@@ -35,7 +35,7 @@ public class PathMover : MonoBehaviour
         if (ShouldSetDestination())
         {
             navMeshAgent.SetDestination(pathPoints.Dequeue());
-            anim.SetTrigger("isRun");
+            anim.SetBool("isRun", true);
         }
        
     }
