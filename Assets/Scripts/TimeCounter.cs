@@ -5,27 +5,43 @@ using UnityEngine.UI;
 
 public class TimeCounter : MonoBehaviour
 {
-    [SerializeField] private Text count;
+    [SerializeField] private Text timeCounter;
+    [SerializeField] private float timeValue;
     [SerializeField] private int clockActiveDelay;
     [SerializeField] private GameObject AddedTimePanel;
 
     private int secondCounter;
+    private int minuteCounter;
 
     void Start()
     {
-        StartCoroutine(SecondCounter(0));
     }
 
-    IEnumerator SecondCounter(int startTime)
+    private void Update()
     {
-        secondCounter = startTime;
-
-        while (secondCounter > -1)
+        if (timeValue > 0)
         {
-            count.text = secondCounter.ToString();
-            yield return new WaitForSeconds(1);
-            secondCounter++;
+            timeValue -= Time.deltaTime;
         }
+        else
+        {
+            timeValue = 0;
+        }
+
+        DisplayTime(timeValue);
+    }
+
+    void DisplayTime(float timeToDisplay)
+    {
+        if (timeToDisplay < 0)
+        {
+            timeToDisplay = 0;
+        }
+
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+
+        timeCounter.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     private void OnTriggerEnter(Collider other)
