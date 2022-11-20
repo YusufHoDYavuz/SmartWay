@@ -48,7 +48,7 @@ public class TimeCounter : MonoBehaviour
     {
         if (other.transform.CompareTag("Clock"))
         {
-            secondCounter += 5;
+            timeValue += 5;
             StartCoroutine(DeactiveAndActiveClock(clockActiveDelay, other.gameObject));
         }
     }
