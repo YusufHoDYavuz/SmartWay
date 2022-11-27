@@ -19,6 +19,19 @@ public class Ragdoll : MonoBehaviour
         RDCollider(true);
     }
 
+    private void Update()
+    {
+        if (playerAgent.velocity.magnitude <= 1f)
+        {
+            anim.SetBool("isRun", false);
+        }
+        else
+        {
+            anim.SetBool("isRun", true);
+        }
+        
+    }
+
     void RGRigidbody(bool status)
     {
         Rigidbody[] rg = GetComponentsInChildren<Rigidbody>();
