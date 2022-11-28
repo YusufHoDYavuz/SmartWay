@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TimeCounter : MonoBehaviour
 {
     [SerializeField] private Text timeCounter;
-    [SerializeField] private float timeValue;
+    public float timeValue;
     [SerializeField] private int clockActiveDelay;
     [SerializeField] private GameObject AddedTimePanel;
 

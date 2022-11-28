@@ -9,6 +9,9 @@ public class Ragdoll : MonoBehaviour
     NavMeshAgent playerAgent;
     PathMover pathMover;
 
+    public DOTweenUI DOTUI;
+    public TimeCounter TC;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -53,6 +56,8 @@ public class Ragdoll : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         RagdollActive();
+        DOTUI.restartGamePanel.SetActive(true);
+        DOTUI.pathCreator.SetActive(false);
     }
 
     void RagdollActive()
@@ -61,6 +66,15 @@ public class Ragdoll : MonoBehaviour
         playerAgent.enabled = false;
         pathMover.enabled = false;
         RGRigidbody(false);
+        RDCollider(true);
+    }
+    
+    public void RagdollDeactive()
+    {
+        anim.enabled = true;
+        playerAgent.enabled = true;
+        pathMover.enabled = true;
+        RGRigidbody(true);
         RDCollider(true);
     }
 }

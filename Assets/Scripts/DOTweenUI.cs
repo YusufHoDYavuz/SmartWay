@@ -6,10 +6,13 @@ using DG.Tweening;
 public class DOTweenUI : MonoBehaviour
 {
     [SerializeField] private GameObject tapToStartPanel;
-    [SerializeField] private GameObject restartGamePanel;
-    [SerializeField] private GameObject pathCreator;
+    public GameObject restartGamePanel;
+    public GameObject pathCreator;
     [SerializeField] private GameObject timeCounter;
+    [SerializeField] private GameObject player;
     [SerializeField] private float tapToStartSpeed;
+    public Ragdoll RD;
+    public TimeCounter TC;
 
     void Start()
     {
@@ -24,4 +27,21 @@ public class DOTweenUI : MonoBehaviour
         pathCreator.SetActive(true);
         timeCounter.SetActive(true);
     }
+
+    public void RestartGame()
+    {
+        //StartCoroutine(RestartGameDelay(3));
+        RD.RagdollDeactive();
+        player.transform.position = new Vector3(9.5f, -3.3f, 6.7f);
+        player.transform.rotation = Quaternion.Euler(Vector3.zero);
+        restartGamePanel.SetActive(false);
+        TC.timeValue = 30;
+        pathCreator.SetActive(true);
+    }
+
+    /* IEnumerator RestartGameDelay(float waitDelay)
+    {
+        yield return new WaitForSeconds(waitDelay);
+
+    } */
 }
